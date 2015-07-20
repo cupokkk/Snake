@@ -2,26 +2,29 @@
 #define _SNAKE_H_
 
 #include "Util.h"
-
+#include <vector>
+#include <list>
 class Snake
 {
 public:
 	Snake();
-	Snake(int x, int y, int speed);
+	Snake(int x, int y, int speed, direction dir);
 	Snake(const Snake &);
 	~Snake();
 
 	void setDirection(direction dir);
 	direction getDirection() const { return m_dir; }
-	element * getHead() const { return m_head; }
-	element * getTailPosition() const { return m_tail; }
-
+	int getLength() const { return m_length; }
+	int getSpeed() const { return m_speed; }
+	int colission(int x, int y);
+	void move();
 	void addElement();
+	void update();
 private:
 	direction m_dir;
-	element * m_head;
-	element * m_tail;
 	int m_speed;
-	int length;
+	int m_length;
+	int m_level;
+	std::list<element> snake;
 };
 #endif
